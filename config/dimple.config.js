@@ -10,5 +10,9 @@ module.exports = {
   assets: {
     entry: `${srcFolder}/assets/**/*`, // files
     output: `${buildFolder}/assets`
+  },
+  svgs: {
+    entry: `${srcFolder}/svgs/*.svg`, // files
+    output: `${buildFolder}/assets`
   }
 }

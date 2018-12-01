@@ -6,9 +6,9 @@ const sass = require('gulp-sass')
 // const flatten = require('gulp-flatten')
 // const webpack = require('webpack')
 // const webpackConfig = require('./webpack.config.js')
-// const svgSprite = require('gulp-svg-sprite')
+const svgSprite = require('gulp-svg-sprite')
 
-// ASSETS copy
+// Assets tasks
 const processAssets = () => {
   return gulp.src([config.assets.entry]).pipe(gulp.dest(config.assets.output))
 }
@@ -17,12 +17,35 @@ const watchAssets = () => {
   gulp.watch([config.assets.entry], processAssets)
 }
 
+// SVGs Tasks
+const processSVGs = () => {
+  return gulp
+    .src([config.svgs.entry])
+    .pipe(
+      svgSprite({
+        mode: {
+          stack: true
+        },
+        svg: {
+          // General options for created SVG files
+          xmlDeclaration: false, // Add XML declaration to SVG sprite
+          doctypeDeclaration: false
+        }
+      })
+    ) // Activate Sass output (with default options) // Activate the «symbol» mode
+    .pipe(gulp.dest(config.svgs.output))
+}
+
+const watchSVGs = () => {
+  gulp.watch([config.svgs.entry], processSVGs)
+}
+
 // Watch
 const watchTask = gulp.parallel(
   // watchSass,
   // watchJS,
-  watchAssets
-  // watchSVGs,
+  watchAssets,
+  watchSVGs
   // watchTemplates
 )
 watchTask.description = 'watch for changes to all source'
@@ -31,8 +54,8 @@ watchTask.description = 'watch for changes to all source'
 const processTask = gulp.parallel(
   // processSass,
   // processJS,
-  processAssets
-  // processSVGs,
+  processAssets,
+  processSVGs
   // processTemplates
 )
 
