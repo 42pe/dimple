@@ -21,6 +21,7 @@ module.exports = {
   },
   sass: {
     entry: `${srcFolder}/scss/main.scss`, // file
+    watch: `${srcFolder}/scss/**/*.scss`, // files
     output: `${buildFolder}` // folder
   },
   js: {

@@ -82,7 +82,7 @@ const processSass = () => {
 }
 
 const watchSass = () => {
-  gulp.watch([config.sass.entry], processSass)
+  gulp.watch([config.sass.watch], processSass)
 }
 
 //  ******************
