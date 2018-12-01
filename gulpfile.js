@@ -3,12 +3,16 @@ const config = require('./config/dimple.config')
 const gulp = require('gulp')
 const sourcemaps = require('gulp-sourcemaps')
 const sass = require('gulp-sass')
+const svgSprite = require('gulp-svg-sprite')
 // const flatten = require('gulp-flatten')
 // const webpack = require('webpack')
 // const webpackConfig = require('./webpack.config.js')
-const svgSprite = require('gulp-svg-sprite')
 
-// Assets tasks
+/* ************************************************************************************ */
+
+//  ******************
+//  Assets tasks
+//  ******************
 const processAssets = () => {
   return gulp.src([config.assets.entry]).pipe(gulp.dest(config.assets.output))
 }
@@ -17,7 +21,11 @@ const watchAssets = () => {
   gulp.watch([config.assets.entry], processAssets)
 }
 
-// SVGs Tasks
+/* ************************************************************************************ */
+
+//  ******************
+//  SVG tasks
+//  ******************
 const processSVGs = () => {
   return gulp
     .src([config.svgs.entry])
@@ -40,9 +48,28 @@ const watchSVGs = () => {
   gulp.watch([config.svgs.entry], processSVGs)
 }
 
+//  ******************
+//  SASS tasks
+//  ******************
+
+const processSass = () => {
+  return gulp
+    .src(config.sass.entry)
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(config.sass.output))
+}
+
+const watchSass = () => {
+  gulp.watch([config.sass.entry], processSass)
+}
+
+/* ************************************************************************************ */
+
 // Watch
 const watchTask = gulp.parallel(
-  // watchSass,
+  watchSass,
   // watchJS,
   watchAssets,
   watchSVGs
@@ -52,7 +79,7 @@ watchTask.description = 'watch for changes to all source'
 
 // Process
 const processTask = gulp.parallel(
-  // processSass,
+  processSass,
   // processJS,
   processAssets,
   processSVGs
