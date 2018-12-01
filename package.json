@@ -2,8 +2,9 @@
   "name": "dimple",
   "version": "0.0.0",
   "description": "A simple moustache, sass, ES6 + webpack, gulp based static site generator",
-  "main": "index.js",
   "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,7 +30,6 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-svg-sprite": "^1.5.0",
-    "modernizr": "^3.6.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.26.1"
   }

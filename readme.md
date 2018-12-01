@@ -1,3 +1,3 @@
 # dimple
 
-A simple sass, ES6 + webpack, gulp based static site generator
+A simple HTML, SASS, ES6 + webpack, SVG-Sprite-able, gulp based static site generator
