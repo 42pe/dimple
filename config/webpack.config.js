@@ -7,7 +7,7 @@ module.exports = {
   entry: config.js.entry,
   output: {
     filename: config.js.output,
-    path: path.resolve(__dirname, config.buildFolder)
+    path: path.resolve(__dirname, `../${config.buildFolder}`)
   },
   context: path.resolve(__dirname, '.'),
   module: {

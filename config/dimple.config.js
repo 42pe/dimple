@@ -4,7 +4,8 @@ const buildFolder = './build'
 module.exports = {
   buildFolder: buildFolder,
   js: {
-    entry: `${srcFolder}/js/main.js`, // file
+    entry: `../${srcFolder}/js/main.js`, // file
+    watch: `${srcFolder}/js/**/*`, // files
     output: './all.min.js' // filename
   },
   assets: {

@@ -5,8 +5,8 @@ const sourcemaps = require('gulp-sourcemaps')
 const sass = require('gulp-sass')
 const svgSprite = require('gulp-svg-sprite')
 // const flatten = require('gulp-flatten')
-// const webpack = require('webpack')
-// const webpackConfig = require('./webpack.config.js')
+const webpack = require('webpack')
+const webpackConfig = require('./config/webpack.config')
 
 /* ************************************************************************************ */
 
@@ -65,12 +65,38 @@ const watchSass = () => {
   gulp.watch([config.sass.entry], processSass)
 }
 
+//  ******************
+//  JS tasks
+//  ******************
+
+function webpackScripts() {
+  webpackConfig.mode = 'development'
+  return new Promise(resolve =>
+    webpack(webpackConfig, (err, stats) => {
+      if (err) console.log('Webpack', err)
+
+      console.log(
+        stats.toString({
+          /* stats options */
+        })
+      )
+
+      resolve()
+    })
+  )
+}
+
+const processJS = gulp.series(webpackScripts)
+const watchJS = () => {
+  gulp.watch([config.js.watch], processJS)
+}
+
 /* ************************************************************************************ */
 
 // Watch
 const watchTask = gulp.parallel(
   watchSass,
-  // watchJS,
+  watchJS,
   watchAssets,
   watchSVGs
   // watchTemplates
@@ -80,7 +106,7 @@ watchTask.description = 'watch for changes to all source'
 // Process
 const processTask = gulp.parallel(
   processSass,
-  // processJS,
+  processJS,
   processAssets,
   processSVGs
   // processTemplates
