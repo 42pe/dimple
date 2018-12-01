@@ -1,0 +1,27 @@
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin wrapper() {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $mobile-bleed;
+  padding-right: $mobile-bleed;
+  max-width: $desktop-max-width;
+  @include for-bp(tablet) {
+    padding-left: $tablet-bleed;
+    padding-right: $tablet-bleed;
+  }
+  @include for-bp(desktop-md) {
+    padding-left: $desktop-bleed;
+    padding-right: $desktop-bleed;
+  }
+}
