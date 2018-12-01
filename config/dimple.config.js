@@ -27,5 +27,8 @@ module.exports = {
     entry: `../${srcFolder}/js/main.js`, // file
     watch: `${srcFolder}/js/**/*`, // files
     output: './all.min.js' // filename
+  },
+  server: {
+    port: 8000
   }
 }

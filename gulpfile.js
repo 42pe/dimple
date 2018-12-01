@@ -4,9 +4,9 @@ const gulp = require('gulp')
 const sourcemaps = require('gulp-sourcemaps')
 const sass = require('gulp-sass')
 const svgSprite = require('gulp-svg-sprite')
-// const flatten = require('gulp-flatten')
 const webpack = require('webpack')
 const webpackConfig = require('./config/webpack.config')
+const webserver = require('gulp-webserver')
 
 /* ************************************************************************************ */
 
@@ -113,6 +113,23 @@ const watchJS = () => {
 
 /* ************************************************************************************ */
 
+//  ******************
+//  Dev Server
+//  ******************
+
+const serve = () => {
+  return gulp.src('build').pipe(
+    webserver({
+      port: config.server.port,
+      livereload: true,
+      // host: '0.0.0.0',
+      open: true
+    })
+  )
+}
+
+/* ************************************************************************************ */
+
 // Watch
 const watchTask = gulp.parallel(
   watchSass,
@@ -135,7 +152,7 @@ const processTask = gulp.parallel(
 )
 
 // default task
-const defaultTask = gulp.series(processTask, watchTask)
+const defaultTask = gulp.series(processTask, gulp.parallel(watchTask, serve))
 
 gulp.task('default', defaultTask)
 gulp.task('build', processTask)
