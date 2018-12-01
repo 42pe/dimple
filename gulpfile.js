@@ -32,7 +32,16 @@ const watchHTML = () => {
   gulp.watch([config.html.entry], processHTML)
 }
 
-/* ************************************************************************************ */
+//  ******************
+//  FAVICON tasks
+//  ******************
+const processFavicon = () => {
+  return gulp.src([config.favicon.entry]).pipe(gulp.dest(config.favicon.output))
+}
+
+const watchFavicon = () => {
+  gulp.watch([config.favicon.entry], processFavicon)
+}
 
 //  ******************
 //  SVG tasks
@@ -110,7 +119,8 @@ const watchTask = gulp.parallel(
   watchJS,
   watchAssets,
   watchSVGs,
-  watchHTML
+  watchHTML,
+  watchFavicon
 )
 watchTask.description = 'watch for changes to all source'
 
@@ -120,7 +130,8 @@ const processTask = gulp.parallel(
   processJS,
   processAssets,
   processSVGs,
-  processHTML
+  processHTML,
+  processFavicon
 )
 
 // default task

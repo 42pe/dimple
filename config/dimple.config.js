@@ -3,14 +3,17 @@ const buildFolder = './build'
 
 module.exports = {
   buildFolder: buildFolder,
-  js: {
-    entry: `../${srcFolder}/js/main.js`, // file
-    watch: `${srcFolder}/js/**/*`, // files
-    output: './all.min.js' // filename
-  },
   assets: {
     entry: `${srcFolder}/assets/**/*`, // files
     output: `${buildFolder}/assets`
+  },
+  html: {
+    entry: `${srcFolder}/html/**/*`, // files
+    output: `${buildFolder}`
+  },
+  favicon: {
+    entry: `${srcFolder}/favicon/*`, // files
+    output: `${buildFolder}`
   },
   svgs: {
     entry: `${srcFolder}/svgs/*.svg`, // files
@@ -20,8 +23,9 @@ module.exports = {
     entry: `${srcFolder}/scss/main.scss`, // file
     output: `${buildFolder}` // folder
   },
-  html: {
-    entry: `${srcFolder}/html/**/*`, // files
-    output: `${buildFolder}`
+  js: {
+    entry: `../${srcFolder}/js/main.js`, // file
+    watch: `${srcFolder}/js/**/*`, // files
+    output: './all.min.js' // filename
   }
 }
