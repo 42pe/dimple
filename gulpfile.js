@@ -21,6 +21,17 @@ const watchAssets = () => {
   gulp.watch([config.assets.entry], processAssets)
 }
 
+//  ******************
+//  HTML tasks
+//  ******************
+const processHTML = () => {
+  return gulp.src([config.html.entry]).pipe(gulp.dest(config.html.output))
+}
+
+const watchHTML = () => {
+  gulp.watch([config.html.entry], processHTML)
+}
+
 /* ************************************************************************************ */
 
 //  ******************
@@ -98,8 +109,8 @@ const watchTask = gulp.parallel(
   watchSass,
   watchJS,
   watchAssets,
-  watchSVGs
-  // watchTemplates
+  watchSVGs,
+  watchHTML
 )
 watchTask.description = 'watch for changes to all source'
 
@@ -108,8 +119,8 @@ const processTask = gulp.parallel(
   processSass,
   processJS,
   processAssets,
-  processSVGs
-  // processTemplates
+  processSVGs,
+  processHTML
 )
 
 // default task

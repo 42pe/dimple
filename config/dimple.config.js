@@ -19,5 +19,9 @@ module.exports = {
   sass: {
     entry: `${srcFolder}/scss/main.scss`, // file
     output: `${buildFolder}` // folder
+  },
+  html: {
+    entry: `${srcFolder}/html/**/*`, // files
+    output: `${buildFolder}`
   }
 }
