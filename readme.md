@@ -1,6 +1,6 @@
 # dimple
 
-A simple HTML, SASS, ES6 + webpack, SVG-Sprite-able, gulp based static site generator.
+A simple HTML, SASS, ES6 + webpack, SVG-Sprite-able, gulp based static site boilerplate.
 
 ## How-to
 
@@ -9,3 +9,7 @@ A simple HTML, SASS, ES6 + webpack, SVG-Sprite-able, gulp based static site gene
 3. Run `npm install` to install all modules
 4. Run `npm start` to run the gulp tasks, start watch and webserver.
 5. Run `npm run build` to only run gulp tasks.
+
+## Want more?
+
+Check the `scss-fw` branch for an additional SCSS framework.
